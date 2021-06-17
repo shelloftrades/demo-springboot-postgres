@@ -1,2 +1,2 @@
 # demo-springboot-postgres
-Project created based from taking a crash course for Spring Boot with Java and Postgres DB
+Project created by taking a crash course on Spring Boot with Java and Postgres DB.
