@@ -1,0 +1,11 @@
+app:
+  datasource:
+    jdbc-url: jdbc:postgresql://localhost:5432/template1
+    username: postgres
+    password: password
+    pool-size: 30
+
+#spring:
+#  flyway:
+#    baselineOnMigrate: true
+#    validateOnMigrate: false
