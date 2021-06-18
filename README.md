@@ -3,7 +3,7 @@ A Java application running in Spring Boot framework using Postgres DB on Docker.
 The goal of this project is to simulate one complete cycle from the `Controller Layer > Service Layer > Data Access Layer  > Postgres, and vice versa`. 
 See diagram below:
 
-![Demo Cycle Diagram](src/main/resources/book/resources/project-diagram.png)
+![Demo Cycle Diagram](src/main/resources/book/resources/demo-diagram.png)
 
 ### Dependencies:
 
