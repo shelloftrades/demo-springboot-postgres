@@ -90,5 +90,4 @@ Sample Response:
        ]
 
 *After this, try other methods (insert, delete, update person, and retrieve person by ID) in the API.*
-
 [CRUD API Documentation](/src/main/resources/book/javadoc/com/example/beginnerdemo/api/PersonController.html)
