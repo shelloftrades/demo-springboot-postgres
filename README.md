@@ -53,7 +53,7 @@ A `Person` has the ff. properties:
    
     `java -jar beginner-demo-0.0.1-SNAPSHOT.jar`
    
-1. In Postman, type URL `localhost:8080/api/v1/person/`, select method GET and click send. Check the status if its 200 OK. The method should return all the people that has been inserted (30 records) initially.
+1. In Postman, type in URL `localhost:8080/api/v1/person/`, since the path defined at PersonController.java is `@RequestMapping("api/v1/person")`. We can always change this path later on. Select method GET and click send. Check the status if its 200 OK. The method should return all the people that has been inserted (30 records) initially.
 
 Sample Response:
    
