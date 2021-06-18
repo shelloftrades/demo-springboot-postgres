@@ -5,7 +5,7 @@ See diagram below:
 
 ![Demo Cycle Diagram](src/main/resources/book/resources/demo-diagram.png)
 
-###Dependencies:
+###Dependencies:###
 
      * Development Artifacts
         spring-boot-starter-web  : Support HTTP methods such as GET, POST, PUT, DELETE, so on...
