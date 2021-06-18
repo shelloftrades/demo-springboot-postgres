@@ -56,6 +56,15 @@ public class PersonService {
     }
 
     /**
+     * Service implementation to retrieve a person information using its email address.
+     * @param email
+     * @return
+     */
+    public Optional<Person> getPersonByEmail(String email) {
+        return personDao_.selectPersonByEmail(email);
+    }
+
+    /**
      * Implementation of update person by ID.
      * @param id
      * @param person

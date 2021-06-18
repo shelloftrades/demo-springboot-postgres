@@ -22,7 +22,12 @@ public class FakePersonAccessDataService implements PersonDao {
 
     @Override
     public int insertPerson(UUID id, Person person) {
-        DB.add(new Person(id, person.getName()));
+        DB.add(new Person(id,
+                person.getName(),
+                person.getBirthday(),
+                person.getEmail(),
+                person.getAddress()
+        ));
         return 1;
     }
 
@@ -55,7 +60,10 @@ public class FakePersonAccessDataService implements PersonDao {
                     // create a new temporary object to set properties
                     Person temp = new Person(
                             p.getId(),
-                            person.getName()
+                            person.getName(),
+                            person.getBirthday(),
+                            person.getEmail(),
+                            person.getAddress()
                     );
 
                     DB.set(indexToUpdate, temp);
@@ -78,5 +86,13 @@ public class FakePersonAccessDataService implements PersonDao {
 
         DB.remove(personMaybe.get());
         return 1;
+    }
+
+    @Override
+    public Optional<Person> selectPersonByEmail(String email) {
+        // Returns the first matching node where email is matching.
+        return   DB.stream()
+                .filter(person -> person.getEmail().equals(email))
+                .findFirst();
     }
 }

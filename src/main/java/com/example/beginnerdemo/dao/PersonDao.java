@@ -46,6 +46,15 @@ public interface PersonDao {
     Optional<Person> selectPersonById(UUID id);
 
     /**
+     * Retrieve a person information with the given email address
+     * Option is used since there might me occasions that this method will return null
+     * when the given email has 0 match.
+     * @param email
+     * @return
+     */
+    Optional<Person> selectPersonByEmail(String email);
+
+    /**
      * Update an existing record of a person
      * @param id
      * @param person

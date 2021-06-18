@@ -4,7 +4,6 @@ import com.example.beginnerdemo.model.Person;
 import com.example.beginnerdemo.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
-import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -72,7 +71,21 @@ public class PersonController {
     public Person getPersonById(@PathVariable("id") @NonNull UUID id) {
         return personService_.getPersonById(id)
                 .orElse(null); // Here you can add a custom message and code to send to client if
-        // there is no person found.
+                                     // there is no person found.
+    }
+
+    /**
+     * TODO: BUG, when calling this method it returns all the people from the DB
+     * This method accepts GET request from client with the request parameter email.
+     * Sample path: 'localhost:8080/api/v1/person/email=akinner5@usa.gov'
+     * @param email
+     * @return
+     */
+    @GetMapping(params = "{email}")
+    public Person getPersonByEmail(@RequestParam("email") String email) {
+        return personService_.getPersonByEmail(email)
+                .orElse(null); // Here you can add a custom message and code to send to client if
+                                     // there is no person found.
     }
 
     /**
@@ -91,6 +104,7 @@ public class PersonController {
     /**
      * This method accepts a DELETE request from client.
      * ID is part of the request parameter of the request.
+     * This is just to show variant to show how to pass the ID for delete.
      *
      * @param id
      * @return

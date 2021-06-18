@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -34,8 +35,8 @@ public class PersonDataAccessService implements PersonDao {
         //        uuid_generate_v4
         //--------------------------------------
         //          4a1d0d24-a590-40e4-9e9c-510c9d8347d6
-        String sql = "INSERT INTO person (id, name) VALUES (uuid_generate_v4(), ?)";
-        return  jdbcTemplate.update(sql, person.getName());
+        String sql = "INSERT INTO person (id, name, birthday, email, address) VALUES (uuid_generate_v4(), ?, ?, ?)";
+        return jdbcTemplate.update(sql, person.getName(), person.getBirthday(), person.getEmail(), person.getAddress());
     }
 
     @Override
@@ -43,7 +44,7 @@ public class PersonDataAccessService implements PersonDao {
         // SQL query to select all people from the database
         // It is a good practice to specify all the columns here (id, name) since
         // we are directly mapping the result set into the Person object as the
-        String sql = "SELECT id, name FROM person;";
+        String sql = "SELECT id, name, birthday, email, address FROM person;";
 
         // This query passes the SQL and RowMapper as parameter
         // For each RowMapper received, the values of each row is converted to Person object.
@@ -51,7 +52,15 @@ public class PersonDataAccessService implements PersonDao {
                 {
                     UUID id = UUID.fromString(resultSet.getString("id"));
                     String name = resultSet.getString("name");
-                    return new Person(id, name);
+                    Date birthday = resultSet.getDate("birthday");
+                    String email = resultSet.getString("email");
+                    String address = resultSet.getString("address");
+                    return new Person(id,
+                            name,
+                            birthday,
+                            email,
+                            address
+                    );
                 }
         );
     }
@@ -60,27 +69,57 @@ public class PersonDataAccessService implements PersonDao {
     public Optional<Person> selectPersonById(UUID id) {
         // Parameter for WHERE is indicated as ?,
         // hence the actual values to be passed as argument is at Object[]{}
-        String sql = " SELECT id, name FROM person WHERE id = ?";
+        String sql = " SELECT id, name, birthday, email, address FROM person WHERE id = ?";
 
         //TODO: Find out an alternative solution to this replace deprecated method
-        Person p = jdbcTemplate.queryForObject(sql, new Object[] {id}, (resultSet, i) ->
+        Person p = jdbcTemplate.queryForObject(sql, new Object[]{id}, (resultSet, i) ->
                 {
                     UUID personId = UUID.fromString(resultSet.getString("id"));
                     String name = resultSet.getString("name");
-                    return new Person(personId, name);
+                    Date birthday = resultSet.getDate("birthday");
+                    String email = resultSet.getString("email");
+                    String address = resultSet.getString("address");
+
+                    return new Person(personId, name, birthday, email, address);
                 }
         );
         return Optional.ofNullable(p);
     }
 
     @Override
+    public Optional<Person> selectPersonByEmail(String email) {
+        // Selects the matching row from the DB with the same email address
+        String sql = "SELECT * FROM person" +
+                "WHERE email = ?";
+        Object[] args = new Object[]{email};
+
+        Person p = jdbcTemplate.queryForObject(sql, args, (resultSet, i) -> {
+            UUID personId = UUID.fromString(resultSet.getString("id"));
+            String name = resultSet.getString("name");
+            Date birthday = resultSet.getDate("birthday");
+            String emailAddress = resultSet.getString("email");
+            String address = resultSet.getString("address");
+
+            return new Person(personId, name, birthday, emailAddress, address);
+        });
+
+        return Optional.ofNullable(p);
+    }
+
+    @Override
     public int updatePersonById(UUID id, Person person) {
-        String sql = "UPDATE person SET name = ?" +
+        String sql = "UPDATE person SET name = ?, birthday = ?, email = ?, address = ?" +
                 "WHERE id = ?";
         // Another variation of JdbcTemplate:update() method
         // You can pass the query with multiple unknown values '?'
-        // These values are passed respectively as parameters of update
-        return jdbcTemplate.update(sql, person.getName(), id);
+        // Pass the arguments respectively / inorder based on your query.
+        return jdbcTemplate.update(sql,
+                person.getName(),
+                person.getBirthday(),
+                person.getEmail(),
+                person.getAddress(),
+                id
+        );
     }
 
     @Override
@@ -88,7 +127,7 @@ public class PersonDataAccessService implements PersonDao {
         // Parameter for WHERE is indicated as ?,
         // hence the actual values to be passed as argument is at Object[]{}
         String sql = " DELETE FROM person WHERE id = ?";
-        Object[] args = new Object[] {id};
+        Object[] args = new Object[]{id};
 
         // Another variation of JdbcTemplate:update() method
         // You can pass the query with 1 value '?' which is the ID

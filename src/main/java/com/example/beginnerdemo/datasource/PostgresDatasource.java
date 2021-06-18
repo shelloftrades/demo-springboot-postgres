@@ -6,6 +6,11 @@ import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+
+/**
+ * This class loads the configuration at 'application.yml' that is specific for 'app.datasource' setting.
+ * It contains the postgres url, port, username, password, etc.
+ */
 @Configuration
 public class PostgresDatasource {
 
