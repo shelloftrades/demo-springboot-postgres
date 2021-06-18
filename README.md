@@ -5,7 +5,7 @@ See diagram below:
 
 ![Demo Cycle Diagram](src/main/resources/book/resources/demo-diagram.png)
 
-###Dependencies:###
+### Dependencies:
 
      * Development Artifacts
         spring-boot-starter-web  : Support HTTP methods such as GET, POST, PUT, DELETE, so on...
@@ -22,9 +22,9 @@ See diagram below:
     
 
 
-##This project supports `CRUD` API for Person. 
+## This project supports `CRUD` API for Person. 
 
-###Person
+### Person
 
 A `Person` has the ff. properties:
 
@@ -45,7 +45,7 @@ A `Person` has the ff. properties:
         "address": "1723 Malibu, California, USA"
     }
 
-##PROCEDURE:
+## PROCEDURE:
 1. Using IntelliJ IDE, open the project folder and click its pom.xml
 1. On the right side of the IDE, open the maven window. Click the beginner-demo > Lifecycle > Install
 ![Install via maven](src/main/resources/book/resources/maven-install.png)
