@@ -6,6 +6,7 @@ See diagram below:
 ![Demo Cycle Diagram](src/main/resources/book/resources/demo-diagram.png)
 
 ###Dependencies:
+
      * Development Artifacts
         spring-boot-starter-web  : Support HTTP methods such as GET, POST, PUT, DELETE, so on...
         java                     : You may use versions above 8, Im using version 16
@@ -84,7 +85,8 @@ Sample Response:
            "birthday": "2020-07-02",
            "email": "hkasbye4@fotki.com",
            "address": "8750 Hooker Circle"
-           }
+           },
+         ...
        ]
 
-*After this, try other methods (insert, delete, update person) in the API.*
+*After this, try other methods (insert, delete, update person, and retrieve person by ID) in the API.*
