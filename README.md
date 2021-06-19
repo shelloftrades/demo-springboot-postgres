@@ -46,6 +46,14 @@ A `Person` has the ff. properties:
     }
 
 ## PROCEDURE:
+A. Setting up the Postgres DB on docker.
+1. Download the latest docker and install. Make sure installation is succeful.
+2. Go to https://hub.docker.com/_/postgres, 
+3. Read about the different postgres tags, Dockerfile content, and finally go to section "How to use this image > start a postgres instance", copy the run code.
+4. Now, you have to run a container based from **postgres:alpine** image, then expose its host port 5432 (default of postgres) into 5433 of the container. Name this container as "demodb" and set environment variable POSTGRES_PASSWORD to 'password2'. So to do that, open your terminal and type as follows: `docker run --name demodb -e POSTGRES_PASSWORD=password2 -d -p 5433:5432 postgres:alpine`
+
+
+B.Running the app
 1. Using IntelliJ IDE, open the project folder and click its pom.xml
 1. On the right side of the IDE, open the maven window. Click the beginner-demo > Lifecycle > Install
 ![Install via maven](src/main/resources/book/resources/maven-install.png)
