@@ -26,7 +26,8 @@ public class FakePersonAccessDataService implements PersonDao {
                 person.getName(),
                 person.getBirthday(),
                 person.getEmail(),
-                person.getAddress()
+                person.getAddress(),
+                person.getPassword()
         ));
         return 1;
     }
@@ -63,7 +64,8 @@ public class FakePersonAccessDataService implements PersonDao {
                             person.getName(),
                             person.getBirthday(),
                             person.getEmail(),
-                            person.getAddress()
+                            person.getAddress(),
+                            person.getPassword()
                     );
 
                     DB.set(indexToUpdate, temp);

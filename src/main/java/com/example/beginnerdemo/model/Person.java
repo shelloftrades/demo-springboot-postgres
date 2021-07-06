@@ -28,4 +28,7 @@ public class Person {
     @NonNull
     private  String email;
     private  String address;
+
+    @NonNull
+    private String password;
 }

@@ -55,11 +55,13 @@ public class PersonDataAccessService implements PersonDao {
                     Date birthday = resultSet.getDate("birthday");
                     String email = resultSet.getString("email");
                     String address = resultSet.getString("address");
+                    String pass = resultSet.getString("password");
                     return new Person(id,
                             name,
                             birthday,
                             email,
-                            address
+                            address,
+                            pass
                     );
                 }
         );
@@ -79,8 +81,9 @@ public class PersonDataAccessService implements PersonDao {
                     Date birthday = resultSet.getDate("birthday");
                     String email = resultSet.getString("email");
                     String address = resultSet.getString("address");
+                    String pass = resultSet.getString("password");
 
-                    return new Person(personId, name, birthday, email, address);
+                    return new Person(personId, name, birthday, email, address, pass);
                 }
         );
         return Optional.ofNullable(p);
@@ -99,8 +102,9 @@ public class PersonDataAccessService implements PersonDao {
             Date birthday = resultSet.getDate("birthday");
             String emailAddress = resultSet.getString("email");
             String address = resultSet.getString("address");
+            String pass = resultSet.getString("password");
 
-            return new Person(personId, name, birthday, emailAddress, address);
+            return new Person(personId, name, birthday, emailAddress, address, pass);
         });
 
         return Optional.ofNullable(p);
