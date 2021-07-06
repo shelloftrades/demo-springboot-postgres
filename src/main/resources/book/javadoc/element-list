@@ -1,6 +1,7 @@
-com.example.beginnerdemo
-com.example.beginnerdemo.controller
-com.example.beginnerdemo.dao
-com.example.beginnerdemo.datasource
-com.example.beginnerdemo.model
-com.example.beginnerdemo.service
+com.shelloftrades.beginnerdemo
+com.shelloftrades.beginnerdemo.controller
+com.shelloftrades.beginnerdemo.dao
+com.shelloftrades.beginnerdemo.datasource
+com.shelloftrades.beginnerdemo.model
+com.shelloftrades.beginnerdemo.repository
+com.shelloftrades.beginnerdemo.service
