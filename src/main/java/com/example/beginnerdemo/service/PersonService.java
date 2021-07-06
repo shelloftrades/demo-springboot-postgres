@@ -2,6 +2,7 @@ package com.example.beginnerdemo.service;
 
 import com.example.beginnerdemo.dao.PersonDao;
 import com.example.beginnerdemo.model.Person;
+import com.example.beginnerdemo.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -17,16 +18,17 @@ import java.util.UUID;
  */
 @Service
 public class PersonService {
-    private final PersonDao personDao_;
+    //private final PersonDao personDao_;
+
+    private final PersonRepository repository;
+
 
     /**
-     * To tell spring that we wanted to INJECT into PersonDao, use @Autowired.
-     * Since we can inject to multiple DAOs, simply annotate @Qualifier to specify DAO.
-     * @param personDao
+     * To tell spring that we wanted to INJECT into PersonRepository, use @Autowired.
      */
     @Autowired
-    public PersonService(@Qualifier("postgres") PersonDao personDao) {
-        this.personDao_ = personDao;
+    public PersonService(PersonRepository personRepository) {
+        this.repository = personRepository;
     }
 
     /**
@@ -34,8 +36,9 @@ public class PersonService {
      * @param person
      * @return
      */
-    public int addPerson( Person person){
-        return personDao_.insertPerson(person);
+    public Person addPerson( Person person){
+
+        return repository.save(person);
     }
 
     /**
@@ -43,7 +46,7 @@ public class PersonService {
      * @return
      */
     public List<Person> getAllPeople() {
-        return personDao_.selectAllPeople();
+        return repository.findAll();
     }
 
     /**
@@ -52,7 +55,7 @@ public class PersonService {
      * @return
      */
     public Optional<Person> getPersonById(UUID id){
-        return personDao_.selectPersonById(id);
+        return repository.findById(id);
     }
 
     /**
@@ -61,7 +64,7 @@ public class PersonService {
      * @return
      */
     public Optional<Person> getPersonByEmail(String email) {
-        return personDao_.selectPersonByEmail(email);
+        return repository.findByEmail(email);
     }
 
     /**
@@ -70,8 +73,17 @@ public class PersonService {
      * @param person
      * @return
      */
-    public int updatePersonById(UUID id, Person person){
-        return personDao_.updatePersonById(id, person);
+    public Person updatePersonById(UUID id, Person person) {
+        Person existingPerson = repository.findById(id).orElse(null);
+        if(existingPerson == null)
+            return  null;
+
+        existingPerson.setName(person.getName());
+        existingPerson.setAddress(person.getAddress());
+        existingPerson.setBirthday(person.getBirthday());
+        existingPerson.setEmail(person.getEmail());
+
+        return repository.save(existingPerson);
     }
 
     /**
@@ -79,7 +91,8 @@ public class PersonService {
      * @param id
      * @return
      */
-    public int deletePersonById(UUID id){
-        return personDao_.deletePersonById(id);
+    public UUID deletePersonById(UUID id){
+         repository.deleteById(id);
+        return id;
     }
 }

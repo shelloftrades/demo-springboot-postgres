@@ -1,4 +1,4 @@
-package com.example.beginnerdemo.api;
+package com.example.beginnerdemo.controller;
 
 import com.example.beginnerdemo.model.Person;
 import com.example.beginnerdemo.service.PersonService;
@@ -45,8 +45,8 @@ public class PersonController {
      *               Path: 'localhost:8080/api/v1/person/'
      */
     @PostMapping
-    public void addPerson(@RequestBody @Validated @NonNull Person person) {
-        personService_.addPerson(person);
+    public Person addPerson(@RequestBody Person person) {
+        return personService_.addPerson(person);
     }
 
     /**
@@ -68,21 +68,20 @@ public class PersonController {
      * @return
      */
     @GetMapping(path = "{id}")
-    public Person getPersonById(@PathVariable("id") @NonNull UUID id) {
+    public Person getPersonById(@PathVariable("id") UUID id) {
         return personService_.getPersonById(id)
                 .orElse(null); // Here you can add a custom message and code to send to client if
                                      // there is no person found.
     }
 
     /**
-     * TODO: BUG, when calling this method it returns all the people from the DB
      * This method accepts GET request from client with the request parameter email.
      * Sample path: 'localhost:8080/api/v1/person/email=akinner5@usa.gov'
      * @param email
      * @return
      */
-    @GetMapping(params = "{email}")
-    public Person getPersonByEmail(@RequestParam("email") String email) {
+    @GetMapping("/get/{email}")
+    public Person getPersonByEmail(@PathVariable String email) {
         return personService_.getPersonByEmail(email)
                 .orElse(null); // Here you can add a custom message and code to send to client if
                                      // there is no person found.
@@ -97,7 +96,7 @@ public class PersonController {
      * @return
      */
     @PutMapping(path = "{id}")
-    public int updatePersonById(@PathVariable("id") UUID id, @RequestBody @NonNull @Validated Person person) {
+    public Person updatePersonById(@PathVariable("id") UUID id, @RequestBody Person person) {
         return personService_.updatePersonById(id, person);
     }
 
@@ -110,8 +109,9 @@ public class PersonController {
      * @return
      */
     @DeleteMapping(params = "id")
-    public int deletePersonById(@RequestParam("id") UUID id) {
-        return personService_.deletePersonById(id);
+    public UUID deletePersonById(@RequestParam("id") UUID id) {
+        personService_.deletePersonById(id);
+        return id;
     }
 
 }

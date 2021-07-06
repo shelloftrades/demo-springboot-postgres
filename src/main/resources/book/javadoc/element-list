@@ -1,5 +1,5 @@
 com.example.beginnerdemo
-com.example.beginnerdemo.api
+com.example.beginnerdemo.controller
 com.example.beginnerdemo.dao
 com.example.beginnerdemo.datasource
 com.example.beginnerdemo.model
