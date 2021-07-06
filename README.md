@@ -34,18 +34,8 @@ A `Person` has the ff. properties:
      - email: String   // Email address should be unique and value is not null
      - address: String // Home address of the person
 
-
-### Sample Person in JSON format
-
-    {
-        "id": "ffdc6aa6-3b24-4238-b1ab-8b2b23c06d9e",
-        "name": "Christen Press",
-        "birthday": "1983-12-31",
-        "email": "cpress23@google.com",
-        "address": "1723 Malibu, California, USA"
-    }
-
 ## PROCEDURE:
+
 A. Setting up the Postgres DB on docker.
 1. Download the latest docker and install. Make sure installation is succeful.
 2. Go to https://hub.docker.com/_/postgres, 
@@ -53,6 +43,7 @@ A. Setting up the Postgres DB on docker.
 4. Now, you have to run a container based from **postgres:alpine** image (small size), then expose its host port 5432 (default of postgres) into 5433 of the container. Name this container as "demodb" and set environment variable POSTGRES_PASSWORD to 'password2'. So to do that, open your terminal and type as follows: `docker run --name demodb -e POSTGRES_PASSWORD=password2 -d -p 5433:5432 postgres:alpine`
 5. If your command is successful, you should see an ID output in your terminal like this: `082b160cf4b687691e3070acfbbb23f0860ef2e98e2b2ef6865fce399b80a418`
 6. To check if it is running properly: `docker ps`. You must see the container demodb is running.
+
 
 B. Running the app
 1. Using IntelliJ IDE, open the project folder and click its pom.xml
