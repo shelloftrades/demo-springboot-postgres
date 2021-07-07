@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+import java.util.Map;
+
 @RestController
 public class AuthController {
 
@@ -41,10 +44,10 @@ public class AuthController {
         // create or load user details
         final UserDetails userDetails = myUserDetailService.loadUserByUsername(authenticationRequest.getUsername());
 
-        // generate token
-        String jwt =  jwtUtil.generateToken(userDetails);
+        // generate JWTs: access and refresh tokens
+        List<String> jwt =  jwtUtil.generateTokens(userDetails);
 
-        return ResponseEntity.ok(new AuthenticationResponse(jwt));
+        return ResponseEntity.ok(new AuthenticationResponse(jwt.get(0), jwt.get(1)));
     }
 
 

@@ -9,7 +9,7 @@ CREATE TABLE person (
 );
 
 -- Temporary data to be used
-
+INSERT INTO person (id, password, name, birthday, email, address) VALUES (uuid_generate_v4(), 'password', 'Shiela Mae Catapan', '1989-08-30', 'smcatapan@gmail.com', 'Bogo City, Cebu, Philippines');
 INSERT INTO person (id, password, name, birthday, email, address) VALUES (uuid_generate_v4(), 'abcd', 'Samuel Coe', '2021-04-29', 'scoe0@ebay.com', '97363 Upham Place');
 INSERT INTO person (id, password, name, birthday, email, address) VALUES (uuid_generate_v4(), 'abcd', 'Ediva Marshall', '2020-10-05', 'emarshall1@is.gd', '499 Golf Parkway');
 INSERT INTO person (id, password, name, birthday, email, address) VALUES (uuid_generate_v4(), 'abcd', 'Aldus Kik', null, 'akik2@patch.com', '8347 Springs Circle');
