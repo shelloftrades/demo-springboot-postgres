@@ -27,6 +27,9 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
     /**
      * Filter all requests from any endpoints containing Authorization header.
+     * Intercept all incoming requests.
+     * Extract JWT from header.
+     * Validate and set in the execution context.
      * @param request
      * @param response
      * @param filterChain
