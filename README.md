@@ -91,3 +91,12 @@ Sample Response:
 
 *After this, try other methods (insert, delete, update person, and retrieve person by ID) in the API.*
 [CRUD API Documentation](/src/main/resources/book/javadoc/com/example/beginnerdemo/api/PersonController.html)
+
+## Tips:
+1. Inside POSTGRES, these commands are useful:
+  - List all the databases: \l
+  - Describe the table/s: \d
+  - Connect to a database: \c
+  - Describe all the tables within a DB: \dt
+  - Import an SQL statements from a local file to your DB ➜  ~ psql -h localhost -U postgres -d demo_mule4 /Users/scatapan/Documents/SQL-MOCK-DATA/demo_mule4_createt.sql
+
