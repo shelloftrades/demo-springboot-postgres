@@ -101,9 +101,9 @@ Sample Response:
   - Import an SQL statements from a local file to your DB ➜  ~ psql -h localhost -U postgres -d demo_mule4 /Users/scatapan/Documents/SQL-MOCK-DATA/demo_mule4_createt.sql
 2. Connect Postgres with Mule: https://varunver.wordpress.com/2020/02/03/mulesoft-connect-to-postgresql-database/
 3. Postgres Maven Dependency: https://mvnrepository.com/artifact/org.postgresql/postgresql/42.3.3
-4. URL: jdbc:postgresql://localhost:5432/your_database_name
-Driver class name: org.postgresql.Driver
-User: your_database_user
-Password: your_database_password
+4. **URL**: _jdbc:postgresql://localhost:5432/your_database_name_
+**Driver class name**: _org.postgresql.Driver_
+**User**: _postgres_
+**Password**: _passwordX_
 
 
